@@ -30,7 +30,10 @@ J  = -(1/m)*(sum(y .*log(hypothesis) + (1-y) .* log(1- hypothesis))) + ...
 
 
 deviation_y = hypothesis - y;
+fprintf('\nSize of deviation_y.\n');
 size(deviation_y);
+fprintf('\nSize of X.\n');
+size(X);
 ##descent = zeros(length(theta),1);
 
 ##for j = 1:length(theta)
@@ -42,10 +45,13 @@ size(deviation_y);
 ##  endif
 ##endfor
 
-theta(1)=0
-
-grad = (1/m)* deviation_y'*X + (lambda/m).*theta;
-
+##theta(1)=0;
+theta1 = [0;theta(2:size(theta),:)];
+grad = (1/m)* X'*deviation_y + (lambda/m).*theta1;
+fprintf('\nSize of theta.\n');
+size(theta1);
+fprintf('\nSize of grad.\n');
+size(grad);
 % =============================================================
 
 end

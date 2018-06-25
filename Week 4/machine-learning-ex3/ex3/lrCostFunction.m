@@ -37,9 +37,15 @@ grad = zeros(size(theta));
 %
 
 
+hypothesis = zeros(m,1);
+hypothesis = (sigmoid(X*theta));
 
-
-
+deviation_y = hypothesis - y;
+J  = -(1/m)*(sum(y .*log(hypothesis) + (1-y) .* log(1- hypothesis))) + ...
+  (lambda/(2*m)).*(sum(theta.^2) - theta(1).^2) ;
+ 
+theta1 = [0;theta(2:size(theta),:)];
+grad = (1/m)* X'*deviation_y + (lambda/m).*theta1;
 
 
 
